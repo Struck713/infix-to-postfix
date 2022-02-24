@@ -4,4 +4,5 @@ infix-to-postfix/infix-to-postfix.vcxproj
 infix-to-postfix/infix-to-postfix.vcxproj.filters
 infix-to-postfix/infix-to-postfix.vcxproj.user
 
+x64/
 .vs/
