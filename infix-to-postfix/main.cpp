@@ -12,15 +12,28 @@ bool eval(std::stack<int>&, char);
 int main() {
 
 	std::stack<int> intStack;
-	const char str[] = "6 7 + 6 4 * -";
+	const char str[] = "64 7 + 45 4 * -";
 
 	int i = 0;
+	bool stillInt = false;
 	while (str[i] != 0) {
 		char current = str[i++];
-		if (current == ' ') continue;
+		if (current == ' ') {
+			stillInt = false;
+			continue;
+		}
+
 		if (eval(intStack, current)) continue;
 
 		int charToInt = current - int('0');
+		if (stillInt) {
+			int increasedTopInt = (intStack.top() * 10) + charToInt;
+			intStack.pop();
+			intStack.push(increasedTopInt);
+			continue;
+		}
+
+		stillInt = true;
 		intStack.push(charToInt);
 	}
 
@@ -32,7 +45,6 @@ int main() {
 	int result = intStack.top();
 	std::cout << "The result is: " << result << std::endl;
 	
-
 	return 0;
 }
 
